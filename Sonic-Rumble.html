@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>索尼克大乱斗 - 官方游戏下载</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --sonic-blue: #1b6cb0;
+            --sonic-red: #e52521;
+            --sonic-yellow: #f7d038;
+            --sonic-light-blue: #40bcf4;
+            --sonic-green: #4caf50;
+            --sonic-orange: #ff9800;
+            --sonic-purple: #9c27b0;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #2a3c7f, #1b6cb0);
+            color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--sonic-blue) 0%, transparent 70%);
+            opacity: 0.1;
+            z-index: -1;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            text-shadow: 3px 3px 0 var(--sonic-red);
+            letter-spacing: 2px;
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--sonic-yellow);
+            margin-bottom: 20px;
+        }
+        
+        .game-logo {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            animation: spin 10s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.1); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+        
+        .game-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .game-description {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .game-description h2 {
+            color: var(--sonic-yellow);
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--sonic-yellow);
+            padding-bottom: 10px;
+        }
+        
+        .features {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .features h2 {
+            color: var(--sonic-light-blue);
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--sonic-light-blue);
+            padding-bottom: 10px;
+        }
+        
+        .features ul {
+            list-style-type: none;
+        }
+        
+        .features li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .features li::before {
+            content: "⚡";
+            position: absolute;
+            left: 0;
+            color: var(--sonic-yellow);
+        }
+        
+        .characters {
+            margin-bottom: 40px;
+        }
+        
+        .characters h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--sonic-yellow);
+            font-size: 2.5rem;
+        }
+        
+        .character-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        .character-card {
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .character-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .character-icon {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+        
+        .character-info {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .character-name {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .sonic { background: linear-gradient(135deg, var(--sonic-blue), var(--sonic-light-blue)); }
+        .tails { background: linear-gradient(135deg, var(--sonic-yellow), #ffb300); }
+        .knuckles { background: linear-gradient(135deg, var(--sonic-red), #ff5252); }
+        .shadow { background: linear-gradient(135deg, #424242, #616161); }
+        .amy { background: linear-gradient(135deg, var(--sonic-purple), #e91e63); }
+        .vector { background: linear-gradient(135deg, var(--sonic-green), #8bc34a); }
+        
+        .download-section {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            margin-bottom: 40px;
+        }
+        
+        .download-section h2 {
+            color: var(--sonic-yellow);
+            margin-bottom: 20px;
+            font-size: 2.2rem;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--sonic-green), #2e7d32);
+            color: white;
+            padding: 18px 45px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 20px 0;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        
+        .download-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(135deg, #4caf50, #388e3c);
+        }
+        
+        .system-requirements {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+        
+        .system-requirements h3 {
+            color: var(--sonic-light-blue);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .requirements-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .min-requirements, .rec-requirements {
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+        
+        .min-requirements h4, .rec-requirements h4 {
+            color: var(--sonic-yellow);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            margin-top: 40px;
+        }
+        
+        .warning {
+            color: var(--sonic-yellow);
+            margin-top: 20px;
+            font-style: italic;
+        }
+        
+        @media (max-width: 768px) {
+            .game-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .requirements-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .game-logo {
+                font-size: 4rem;
+            }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="game-logo">🌏</div>
+            <h1>索尼克大乱斗</h1>
+            <p class="subtitle">史诗级乱斗游戏 - 免费下载畅玩</p>
+            <p>加入索尼克和他的朋友们，在激动人心的对战游戏中一决高下！</p>
+        </header>
+        
+        <section class="game-info">
+            <div class="game-description">
+                <h2>游戏简介</h2>
+                <p>《索尼克大乱斗》是一款基于著名刺猬索尼克系列角色的免费对战游戏。玩家可以选择自己喜爱的角色，在多个精心设计的竞技场中展开激烈战斗。</p>
+                <p>游戏结合了高速动作与策略元素，每个角色都有独特的技能和战斗风格。无论是单人挑战还是多人对战，都能带来无尽的乐趣！</p>
+                <p>精美的画面、流畅的操作和丰富的游戏模式，让每一位玩家都能找到属于自己的游戏乐趣。</p>
+            </div>
+            
+            <div class="features">
+                <h2>游戏特色</h2>
+                <ul>
+                    <li>12个可玩角色，每个都有独特技能</li>
+                    <li>8个不同主题的竞技场</li>
+                    <li>多种游戏模式：故事模式、对战模式、生存模式</li>
+                    <li>支持本地多人和在线对战</li>
+                    <li>精美的3D图形和特效</li>
+                    <li>定期更新新角色和内容</li>
+                    <li>完全免费，无隐藏收费</li>
+                    <li>兼容Windows、Mac和Linux系统</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section class="characters">
+            <h2>可选角色</h2>
+            <div class="character-grid">
+                <div class="character-card">
+                    <div class="character-icon sonic">🦔</div>
+                    <div class="character-info">
+                        <div class="character-name">索尼克</div>
+                        <p>速度型角色，拥有闪电般的移动速度和旋转攻击。</p>
+                    </div>
+                </div>
+                
+                <div class="character-card">
+                    <div class="character-icon tails">🦊</div>
+                    <div class="character-info">
+                        <div class="character-name">塔尔斯</div>
+                        <p>技术型角色，可以飞行并使用各种机械装置。</p>
+                    </div>
+                </div>
+                
+                <div class="character-card">
+                    <div class="character-icon knuckles">👊</div>
+                    <div class="character-info">
+                        <div class="character-name">纳克鲁斯</div>
+                        <p>力量型角色，拥有强大的拳击和攀爬能力。</p>
+                    </div>
+                </div>
+                
+                <div class="character-card">
+                    <div class="character-icon shadow">🎩</div>
+                    <div class="character-info">
+                        <div class="character-name">夏特</div>
+                        <p>平衡型角色，可以使用混沌控制能力。</p>
+                    </div>
+                </div>
+                
+                <div class="character-card">
+                    <div class="character-icon amy">🔨</div>
+                    <div class="character-info">
+                        <div class="character-name">艾米</div>
+                        <p>技巧型角色，使用锤子进行攻击和防御。</p>
+                    </div>
+                </div>
+                
+                <div class="character-card">
+                    <div class="character-icon vector">🐊</div>
+                    <div class="character-info">
+                        <div class="character-name">维克特</div>
+                        <p>防御型角色，拥有强大的体魄和声波攻击。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="download-section">
+            <h2>立即下载游戏</h2>
+            <p>完全免费，无任何隐藏费用！支持Windows、Mac和Linux系统。</p>
+            
+            <a href="https://apkcombo.com/r2?u=https%3A%2F%2Fapks.39b7cb94d40914bac590886981b0ed6e.r2.cloudflarestorage.com%2Fcom.sega.sonicrumble%2F1.3.2%2F1320.6aee8a9dcce10c1b6247920f743b26c152964d08.apks%3Fresponse-content-disposition%3Dattachment%253B%2520filename%253D%2522Sonic%2520Rumble_1.3.2_apkcombo.com.xapk%2522%26response-content-type%3Dapplication%252Fxapk-package-archive%26X-Amz-Algorithm%3DAWS4-HMAC-SHA256%26X-Amz-Date%3D20251025T193059Z%26X-Amz-SignedHeaders%3Dhost%26X-Amz-Expires%3D14400%26X-Amz-Credential%3D3cb727b4cd4780c410b780ac7caa4da3%252F20251025%252Fauto%252Fs3%252Faws4_request%26X-Amz-Signature%3D74654405cabaccf97a683e2321b8c81afa3449b7f5e6311e1ace0edb8c508291&fp=a8b3f797760401811eb03565c7ac0d50&ip=107.151.255.255&package_name=com.sega.sonicrumble&lang=en" class="download-btn pulse" id="downloadBtn">立即下载 (1.2GB)</a>
+            
+            <div class="system-requirements">
+                <h3>系统要求</h3>
+                <div class="requirements-grid">
+                    <div class="min-requirements">
+                        <h4>最低配置</h4>
+                        <p>操作系统: Windows 7 / macOS 10.12 / Ubuntu 16.04</p>
+                        <p>处理器: Intel i3 或同等AMD处理器</p>
+                        <p>内存: 4 GB RAM</p>
+                        <p>显卡: Intel HD Graphics 4000</p>
+                        <p>存储空间: 2 GB 可用空间</p>
+                    </div>
+                    
+                    <div class="rec-requirements">
+                        <h4>推荐配置</h4>
+                        <p>操作系统: Windows 10 / macOS 10.15 / Ubuntu 18.04</p>
+                        <p>处理器: Intel i5 或同等AMD处理器</p>
+                        <p>内存: 8 GB RAM</p>
+                        <p>显卡: NVIDIA GTX 660 / AMD Radeon HD 7870</p>
+                        <p>存储空间: 2 GB 可用空间</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <p>© 2025 索尼克大乱斗 - 本页面仅为示例，非官方游戏</p>
+            <p class="warning">注意：这是一个演示页面，下载按钮不会实际下载游戏文件。</p>
+        </footer>
+    </div>
+
+    <script>
+        // 下载按钮交互效果
+        document.getElementById('downloadBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('感谢您的下载请求！这是一个演示页面，实际游戏中这里会开始下载游戏文件。');
+            
+            // 模拟下载进度（仅演示）
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += 10;
+                this.textContent = `下载中... ${progress}%`;
+                
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    this.textContent = '下载完成！';
+                    this.style.background = 'linear-gradient(135deg, #4caf50, #2e7d32)';
+                    
+                    setTimeout(() => {
+                        this.textContent = '立即下载 (1.2GB)';
+                        this.style.background = 'linear-gradient(135deg, var(--sonic-green), #2e7d32)';
+                    }, 3000);
+                }
+            }, 300);
+        });
+    </script>
+</body>
+</html>
